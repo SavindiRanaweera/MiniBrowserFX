@@ -104,6 +104,17 @@ public class MainSceneController {
                 }
             });
 
+            String request = """
+                    GET %s HTTP/1.1
+                    Host: %s
+                    User-Agent: mini-browser/1
+                    Accept: text/html;
+                    Connection: close
+                    """.formatted ( path,host );
+
+            socket.getOutputStream ().write ( request.getBytes () );
+            socket.getOutputStream ().flush ();
+
         } catch (IOException e) {
             throw new RuntimeException ( "Connection error" );
         }

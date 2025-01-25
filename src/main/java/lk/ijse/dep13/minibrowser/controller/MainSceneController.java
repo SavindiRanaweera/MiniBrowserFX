@@ -29,6 +29,18 @@ public class MainSceneController {
     }
 
     private void loadWebPage(String url) {
-        wbDisplay.getEngine().load(url);
+        //wbDisplay.getEngine().load(url);
+        System.out.println (url );
+
+        int i;
+        String protocol = null;
+
+        //Identify the protocol
+        if((i = url.indexOf ( "://" )) != -1){
+            protocol = url.substring (0, i );
+            url = url.substring (i + 3);
+            System.out.println (protocol );
+            System.out.println (url );
+        }
     }
 }

@@ -98,11 +98,14 @@ public class MainSceneController {
                     InputStreamReader isr = new InputStreamReader (is);
                     BufferedReader br = new BufferedReader (isr);
 
+                    String statusLine = br.readLine();
+                    int statusCode = Integer.parseInt ( statusLine.split ( " " )[1] );
+                    boolean redirection = statusCode >= 300 && statusCode <= 399;
 
                 } catch (IOException e) {
                     throw new RuntimeException ( "Failed to load webpage" );
                 }
-            });
+            }).start ();
 
             String request = """
                     GET %s HTTP/1.1

@@ -72,6 +72,8 @@ public class MainSceneController {
             System.out.println ("Port: " + port );
             System.out.println ("Path: " + path );
 
+            if(host.isBlank () || port == -1) throw new RuntimeException ("Invalid host or port");
+
         }catch (Exception e){
             e.printStackTrace();
         }

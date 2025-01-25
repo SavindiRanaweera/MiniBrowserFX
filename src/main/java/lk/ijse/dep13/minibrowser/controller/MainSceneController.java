@@ -34,13 +34,20 @@ public class MainSceneController {
 
         int i;
         String protocol = null;
+        String host = null;
+        int port = -1;
+        String path = null;
 
         //Identify the protocol
         if((i = url.indexOf ( "://" )) != -1){
             protocol = url.substring (0, i );
             url = url.substring (i + 3);
-            System.out.println (protocol );
-            System.out.println (url );
         }
+
+        //Identify the host and port
+        int slashIndex = url.indexOf ( "/" );
+        String hostNPort = (slashIndex != -1) ? url.substring (0, slashIndex) : url;
+        path = (slashIndex != -1) ? url.substring (slashIndex ) : url ;
+
     }
 }

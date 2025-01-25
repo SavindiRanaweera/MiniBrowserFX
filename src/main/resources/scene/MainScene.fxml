@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-
 <AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep13.minibrowser.controller.MainSceneController">
    <children>
       <HBox layoutX="2.0" prefHeight="51.0" prefWidth="589.0">
@@ -29,7 +28,7 @@
                   <Insets left="2.0" right="5.0" top="10.0" />
                </HBox.margin>
                <padding>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="5.0" top="10.0" />
                </padding>
             </TextField>
          </children>

@@ -118,6 +118,21 @@ public class MainSceneController {
                         }
                     }
 
+                    if( contentType == null ){
+                        throw new RuntimeException ("Missing Content-Type");
+                    } else if (!contentType.equalsIgnoreCase ( "text/html" )) {
+                        throw new RuntimeException ("Unsupported Content-Type: " + contentType);
+                    }else {
+                        String payLoad = "";
+                        while (true){
+                            line = br.readLine ();
+                            if (line == null) break;
+                            payLoad += line + "\n";
+                        }
+
+                        String finalPayLoad = payLoad;
+                        Platform.runLater( () -> wbDisplay.getEngine ().loadContent ( finalPayLoad ));
+                    }
 
 
                 } catch (IOException e) {

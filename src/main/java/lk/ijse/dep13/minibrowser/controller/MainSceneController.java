@@ -7,7 +7,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebView;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.Socket;
 
 public class MainSceneController {
@@ -87,6 +90,19 @@ public class MainSceneController {
 
         try {
             Socket socket = new Socket ( host , port );
+            System.out.println (socket.getRemoteSocketAddress() );
+
+            new Thread( () -> {
+                try {
+                    InputStream is = socket.getInputStream ();
+                    InputStreamReader isr = new InputStreamReader (is);
+                    BufferedReader br = new BufferedReader (isr);
+
+
+                } catch (IOException e) {
+                    throw new RuntimeException ( "Failed to load webpage" );
+                }
+            });
 
         } catch (IOException e) {
             throw new RuntimeException ( "Connection error" );

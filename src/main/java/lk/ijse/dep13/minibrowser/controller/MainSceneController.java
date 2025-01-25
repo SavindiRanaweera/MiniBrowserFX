@@ -99,6 +99,9 @@ public class MainSceneController {
                     BufferedReader br = new BufferedReader (isr);
 
                     String statusLine = br.readLine();
+                    if (statusLine == null) {
+                        throw new RuntimeException("Empty or invalid status line received");
+                    }
                     int statusCode = Integer.parseInt ( statusLine.split ( " " )[1] );
                     boolean redirection = statusCode >= 300 && statusCode <= 399;
 
@@ -152,7 +155,8 @@ public class MainSceneController {
             socket.getOutputStream ().flush ();
 
         } catch (IOException e) {
-            throw new RuntimeException ( "Connection error" );
+            e.printStackTrace();
+            throw new RuntimeException("Connection error", e);
         }
 
     }

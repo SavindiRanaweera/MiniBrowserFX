@@ -7,6 +7,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebView;
 
+import java.io.IOException;
+import java.net.Socket;
+
 public class MainSceneController {
 
     public AnchorPane root;
@@ -78,6 +81,16 @@ public class MainSceneController {
             e.printStackTrace();
         }
 
+        if (!(protocol.equalsIgnoreCase("http") || protocol.equalsIgnoreCase("https"))) {
+            throw new RuntimeException ("Unsupported protocol: " + protocol);
+        }
+
+        try {
+            Socket socket = new Socket ( host , port );
+
+        } catch (IOException e) {
+            throw new RuntimeException ( "Connection error" );
+        }
 
     }
 }

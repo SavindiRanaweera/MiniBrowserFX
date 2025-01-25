@@ -102,6 +102,24 @@ public class MainSceneController {
                     int statusCode = Integer.parseInt ( statusLine.split ( " " )[1] );
                     boolean redirection = statusCode >= 300 && statusCode <= 399;
 
+                    String line;
+                    String contentType = null;
+                    while ((line = br.readLine ()) != null && !line.isBlank ()) {
+                        String header = line.split ( ":" )[0].strip ();
+                        String value = line.substring ( line.indexOf ( ":" ) + 1 ).strip ();
+                        if (redirection) {
+                            if(!header.equalsIgnoreCase ( "Location" )) continue;
+                            Platform.runLater( () -> txtAddress.setText ( value ) );
+                            loadWebPage ( value );
+                            return;
+                        }else {
+                            if(!header.equalsIgnoreCase ( "Content-Type" )) continue;
+                            contentType = value;
+                        }
+                    }
+
+
+
                 } catch (IOException e) {
                     throw new RuntimeException ( "Failed to load webpage" );
                 }
